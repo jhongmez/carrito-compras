@@ -1,7 +1,7 @@
 /*
     Variables
 */
-const carrito       = document.getElementById('carrito');
+const carrito  = document.getElementById('carrito');
 const cursos   = document.getElementById('lista-cursos');
 
 
@@ -27,5 +27,15 @@ function cargarEventListeners() {
 // Function que compra el curso
 function comprarCurso(e) {
     e.preventDefault();
-    console.log(e.target);
+    // Con este condicional hacemos de que si contiene esta clase no traiga su elemento padre
+    if (e.target.classList.contains('agregar-carrito')) {
+        const nombreCurso = e.target.parentElement.parentElement;
+        // Esta funcion nos va a mostrar que info tiene
+        leerInfoCurso(nombreCurso);
+    }
+}
+
+// Leer datos del curso
+function leerInfoCurso(nombreCurso) {
+    console.log(nombreCurso)
 }

@@ -16,6 +16,8 @@ function cargarEventListeners() {
     //Dispara cuando se da clic en agregar carrito
     cursos.addEventListener('click', comprarCurso);
 
+    carrito.addEventListener('click', borrarCurso);
+
 }
 
 
@@ -54,7 +56,7 @@ function insertarCarrito(curso) {
     const row = document.createElement('tr');
     row.innerHTML = `
         <td>
-            <img src="${curso.imagen}">
+            <img src="${curso.imagen}" width="100">
         </td>
         <td>
             ${curso.titulo}
@@ -67,4 +69,15 @@ function insertarCarrito(curso) {
         </td>
     `;
     listaCursos.appendChild(row);
+}
+
+//Eliminar curso
+function borrarCurso(e){
+    e.preventDefault();
+
+    let curso;
+
+    if(e.target.classList.contains('borrar-curso')) {
+        console.log(e.target.parentElement.parentElement.remove());
+    }
 }

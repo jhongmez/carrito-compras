@@ -1,9 +1,10 @@
 /*
     Variables
 */
-const carrito  = document.getElementById('carrito');
-const cursos   = document.getElementById('lista-cursos');
-const listaCursos = document.querySelector('#lista-carrito tbody');
+const carrito       = document.getElementById('carrito');
+const cursos        = document.getElementById('lista-cursos');
+const listaCursos   = document.querySelector('#lista-carrito tbody');
+const vaciarCarrito = document.getElementById('vaciar-carrito');
 
 
 
@@ -17,6 +18,8 @@ function cargarEventListeners() {
     cursos.addEventListener('click', comprarCurso);
 
     carrito.addEventListener('click', borrarCurso);
+
+    vaciarCarrito.addEventListener('click', borrarTodo);
 
 }
 
@@ -78,6 +81,17 @@ function borrarCurso(e){
     let curso;
 
     if(e.target.classList.contains('borrar-curso')) {
-        console.log(e.target.parentElement.parentElement.remove());
+        e.target.parentElement.parentElement.remove();
     }
+
+}
+
+// Esta función nos elimina varios cursos
+function borrarTodo(e) {
+
+    while (listaCursos.firstChild) {
+        listaCursos.removeChild(listaCursos.firstChild);
+    }
+    return false;
+
 }

@@ -72,6 +72,8 @@ function insertarCarrito(curso) {
         </td>
     `;
     listaCursos.appendChild(row);
+
+    guardarCursoLocalStorage(curso);
 }
 
 //Eliminar curso
@@ -93,5 +95,31 @@ function borrarTodo(e) {
         listaCursos.removeChild(listaCursos.firstChild);
     }
     return false;
+
+}
+
+//Almacenando cursos en el carrito
+function guardarCursoLocalStorage(curso) {
+    let cursos;
+
+    cursos = obtenerCursosLocalStorage();
+
+    // el curso seleccionado se agrega al arreglo
+    cursos.push(curso);
+
+    localStorage.setItem( 'cursos', JSON.stringify( cursos ) );
+}
+
+//Comprueba que haya elementos en localstorage
+function obtenerCursosLocalStorage() {
+    let cursosLS;
+
+    //Se comprueba si hay algo en local storage
+    if ( localStorage.getItem('cursos') == null ) {
+        cursosLS = [];
+    } else {
+        cursosLS = JSON.parse( localStorage.getItem('cursos') );
+    }
+    return cursosLS;
 
 }
